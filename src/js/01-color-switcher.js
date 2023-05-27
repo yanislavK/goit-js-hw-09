@@ -1,7 +1,5 @@
 const start = document.querySelector(`[data-start]`);
-
 const stop = document.querySelector(`[data-stop]`);
-
 const body = document.querySelector(`body`)
 let timerId= null
 
@@ -11,7 +9,6 @@ start.addEventListener(`click`, () => {
     timerId = setInterval(changeBodyColour, 1000);
     console.log(timerId);
 })
-
 
 stop.addEventListener(`click`, (() => {
     clearInterval(timerId);
