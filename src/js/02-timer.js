@@ -5,25 +5,23 @@ import Notiflix from 'notiflix';
 const start = document.querySelector(`[data-start]`);
 const input = document.querySelector('#datetime-picker');
 
-
 const data = {
-  days:document.querySelector(`[data-days]`),
-  hours : document.querySelector(`[data-hours]`),
-  minutes : document.querySelector(`[data-minutes]`),
-  seconds : document.querySelector(`[data-seconds]`),
-}
+  days: document.querySelector(`[data-days]`),
+  hours: document.querySelector(`[data-hours]`),
+  minutes: document.querySelector(`[data-minutes]`),
+  seconds: document.querySelector(`[data-seconds]`),
+};
 
 start.disabled = true;
-let difference = 0
-const timerSeconds = 1000
+let difference = 0;
+const timerSeconds = 1000;
 
-function updateFormat( days, hours, minutes, seconds ) {
-    data.days.textContent = days;
-    data.hours.textContent = hours;
-    data.minutes.textContent = minutes;
-    data.seconds.textContent = seconds;
-    
-};
+function updateFormat(days, hours, minutes, seconds) {
+  data.days.textContent = days.toString().padStart(2, '0');
+  data.hours.textContent = hours.toString().padStart(2, '0');
+  data.minutes.textContent = minutes.toString().padStart(2, '0');
+  data.seconds.textContent = seconds.toString().padStart(2, '0');
+}
 
 function timeToWrite() {
   let timerId = setInterval(() => {
@@ -52,17 +50,13 @@ const options = {
     const defaultDate = options.defaultDate;
 
     difference = selectedDate - defaultDate;
-   
-    if (difference>0) {
-      start.disabled = false;
 
-      
+    if (difference > 0) {
+      start.disabled = false;
     } else {
       Notiflix.Notify.failure('Please choose a date in the future');
     }
   },
-  
-
 };
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -83,6 +77,4 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-
-
- flatpickr(input, options);
+flatpickr(input, options);
